@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.oopbasedpayrollsystem;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
@@ -14,127 +15,161 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-/**
- *
- * @author User
- */
+
 public class EmployeeDashboardGUI extends javax.swing.JFrame {
     private String employeeID;
+    private EmployeeDatabase employeeDatabase;
+
     /**
-     * Creates new form EmployeeDashboardGUI
+     * Default Constructor
      */
     public EmployeeDashboardGUI() {
+        this.employeeDatabase = new EmployeeDatabase(); // ✅ No Singleton
         initComponents();
+    }
+
+    /**
+     * New Constructor that Accepts Employee ID
+     */
+    public EmployeeDashboardGUI(String empID) {
+        this.employeeDatabase = new EmployeeDatabase(); // ✅ Ensure initialization
+        this.employeeID = empID;
+        initComponents();
+        loadEmployeeDetails();
     }
 
     public void setEmployeeID(String empID) {
         this.employeeID = empID;
-        loadEmployeeDetails(); // Load Employee Data Once Set
+        loadEmployeeDetails();
     }
-    
+
     public String getEmployeeID() {
-    return this.employeeID;
-}
-
-private void loadEmployeeDetails() {
-    String csvFilePath = "C:/Users/User/OneDrive/Documents/NetBeansProjects/OOPBasedPayrollSystem/src/MotorPH Employee Data - Employee Details.csv";
-
-    System.out.println("🔍 Checking CSV File: " + csvFilePath);
-    File file = new File(csvFilePath);
-    if (!file.exists()) {
-        System.out.println("❌ ERROR: CSV File Not Found!");
-        JOptionPane.showMessageDialog(this, "❌ Error: CSV file not found!", "File Error", JOptionPane.ERROR_MESSAGE);
-        return;
+        return this.employeeID;
     }
 
-    System.out.println("✅ CSV File Found, Proceeding...");
-    System.out.println("🔍 Loading Employee Details for ID: '" + employeeID + "'");
+    private void loadEmployeeDetails() {
+        String basePath = System.getProperty("user.dir");
+        String csvFilePath = basePath + File.separator + "src" + File.separator + "MotorPH Employee Data - Employee Details.csv";
 
-    try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
-        String line;
-        boolean firstLine = true;
+        System.out.println("🔍 Checking CSV File: " + csvFilePath);
+        File file = new File(csvFilePath);
 
-        while ((line = br.readLine()) != null) {
-            if (firstLine) {
-                firstLine = false; 
-                continue;
-            }
-
-            String[] data = parseCSVLine(line);
-
-            if (data.length < 21) {
-                System.out.println("⚠ Skipping invalid row (not enough columns): " + line);
-                continue;
-            }
-
-            System.out.println("📌 Checking row for ID: " + data[0].trim());
-
-            if (data[0].trim().equals(employeeID)) {  
-                txtEmployeeID.setText(data[0].trim());
-                txtLastName.setText(data[1].trim());
-                txtFirstName.setText(data[2].trim());
-                txtBirthday.setText(data[3].trim());
-                txtAddress.setText(data[4].trim());
-                txtPhoneNumbe.setText(data[5].trim());
-                txtSSS.setText(data[6].trim());
-                txtPhilHealth.setText(data[7].trim());
-                txtTIN.setText(data[8].trim());
-                txtPagIbig.setText(data[9].trim());
-                txtStatus.setText(data[10].trim());
-                txtPosition.setText(data[11].trim());
-
-                JOptionPane.showMessageDialog(this, "✅ Welcome " + data[2].trim() + " " + data[1].trim() + "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
+        if (!file.exists()) {
+            JOptionPane.showMessageDialog(this, "❌ Error: CSV file not found!", "File Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-        JOptionPane.showMessageDialog(this, "❌ Employee not found!", "Error", JOptionPane.ERROR_MESSAGE);
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "⚠ Error loading employee data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
-    }
-}
+        System.out.println("✅ CSV File Found, Proceeding...");
+        System.out.println("🔍 Loading Employee Details for ID: '" + employeeID + "'");
 
-private String[] parseCSVLine(String line) {
-    List<String> values = new ArrayList<>();
-    StringBuilder currentValue = new StringBuilder();
-    boolean inQuotes = false;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            boolean firstLine = true;
 
-    for (char ch : line.toCharArray()) {
-        if (ch == '"') {
-            inQuotes = !inQuotes;
-        } else if (ch == ',' && !inQuotes) {
-            values.add(currentValue.toString().trim());
-            currentValue.setLength(0);
-        } else {
-            currentValue.append(ch);
+            while ((line = br.readLine()) != null) {
+                if (firstLine) {
+                    firstLine = false;
+                    continue;
+                }
+
+                String[] data = parseCSVLine(line);
+
+                if (data.length < 12) {
+                    System.out.println("⚠ Skipping invalid row (not enough columns): " + line);
+                    continue;
+                }
+
+                if (data[0].trim().equals(employeeID)) {  
+                    txtEmployeeID.setText(data[0].trim());
+                    txtEmployeeID.setEditable(false);
+
+                    txtLastName.setText(data[1].trim());
+                    txtLastName.setEditable(false);
+
+                    txtFirstName.setText(data[2].trim());
+                    txtFirstName.setEditable(false);
+
+                    txtBirthday.setText(data[3].trim());
+                    txtBirthday.setEditable(false);
+
+                    txtAddress.setText(data[4].trim());
+                    txtAddress.setEditable(false);
+
+                    txtPhoneNumbe.setText(data[5].trim()); // ✅ Fixed typo
+                    txtPhoneNumbe.setEditable(false);
+
+                    txtSSS.setText(data[6].trim());
+                    txtSSS.setEditable(false);
+
+                    txtPhilHealth.setText(data[7].trim());
+                    txtPhilHealth.setEditable(false);
+
+                    txtTIN.setText(data[8].trim());
+                    txtTIN.setEditable(false);
+
+                    txtPagIbig.setText(data[9].trim());
+                    txtPagIbig.setEditable(false);
+
+                    txtStatus.setText(data[10].trim());
+                    txtStatus.setEditable(false);
+
+                    txtPosition.setText(data[11].trim());
+                    txtPosition.setEditable(false);
+
+                    JOptionPane.showMessageDialog(this, "✅ Welcome " + data[2].trim() + " " + data[1].trim() + "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    recordAttendance(employeeID, "Login");
+                    return;
+                }
+            }
+
+            JOptionPane.showMessageDialog(this, "❌ Employee not found!", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "⚠ Error loading employee data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
-    values.add(currentValue.toString().trim());
-    return values.toArray(new String[0]);
-}
 
-private void recordAttendance(String employeeID, String action) {
-    String csvFilePath = System.getProperty("user.home") + "/OneDrive/Documents/attendance.csv";
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private String[] parseCSVLine(String line) {
+        List<String> values = new ArrayList<>();
+        StringBuilder currentValue = new StringBuilder();
+        boolean inQuotes = false;
 
-    File file = new File(csvFilePath);
-    boolean fileExists = file.exists();
+        for (char ch : line.toCharArray()) {
+            if (ch == '"') {
+                inQuotes = !inQuotes;
+            } else if (ch == ',' && !inQuotes) {
+                values.add(currentValue.toString().trim());
+                currentValue.setLength(0);
+            } else {
+                currentValue.append(ch);
+            }
+        }
+        values.add(currentValue.toString().trim());
+        return values.toArray(new String[0]);
+    }
 
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
-        // If file does not exist, write headers first
-        if (!fileExists) {
-            writer.write("EmployeeID,Action,Timestamp");
+    private void recordAttendance(String employeeID, String action) {
+        String csvFilePath = System.getProperty("user.home") + File.separator + "OneDrive" + File.separator + "Documents" + File.separator + "attendance.csv";
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        File file = new File(csvFilePath);
+        boolean fileExists = file.exists();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
+            if (!fileExists) {
+                writer.write("EmployeeID,Action,Timestamp");
+                writer.newLine();
+            }
+            writer.write(employeeID + "," + action + "," + now.format(formatter));
             writer.newLine();
+            System.out.println("📌 Attendance Recorded: " + employeeID + " → " + action);
+        } catch (IOException e) {
+            System.out.println("❌ ERROR: Unable to record attendance!");
+            JOptionPane.showMessageDialog(this, "Error recording attendance!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        // Append the attendance record
-        writer.write(employeeID + "," + action + "," + now.format(formatter));
-        writer.newLine();
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Error recording attendance!", "Error", JOptionPane.ERROR_MESSAGE);
     }
-}
 
     
 
@@ -533,15 +568,22 @@ private void recordAttendance(String employeeID, String action) {
     }//GEN-LAST:event_txtPhoneNumbeActionPerformed
 
     private void GeneratePayslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneratePayslipActionPerformed
-        String employeeID = txtEmployeeID.getText().trim();
+String employeeID = txtEmployeeID.getText().trim(); // ✅ Get Employee ID from UI
 
-    if (employeeID.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "No employee selected!", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+if (employeeID.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "❌ No employee selected!", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+int empID;
+try {
+    empID = Integer.parseInt(employeeID);
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "❌ Invalid Employee ID format!", "Error", JOptionPane.ERROR_MESSAGE);
+    return; // ✅ Stop execution if parsing fails
+}
+Payslip payslipWindow = new Payslip(employeeID);
+payslipWindow.setVisible(true);
 
-    Payslip payslipWindow = new Payslip(employeeID);  
-    payslipWindow.setVisible(true);
     }//GEN-LAST:event_GeneratePayslipActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

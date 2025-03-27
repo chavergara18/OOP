@@ -4,48 +4,49 @@
  */
 package com.mycompany.oopbasedpayrollsystem;
 
-/**
- *
- * @author User
- */
 public class PayrollCalculator {
-    private static final double SSS_MAX = 1350.0;
-    private static final double PHILHEALTH_MAX = 5000.0 * 0.025; // 2.5% of 5000
-    private static final double PAGIBIG_MAX = 100.0;
-
-    public static double calculateGrossSalary(double basicSalary, double allowance) {
-        return basicSalary + allowance;
+    public static double calculateGrossSalary(double basic, double allowance) {
+        return basic + allowance; // Ensure gross includes allowances
     }
 
-    public static double computeSSS(double salary) {
-        double sssContribution = salary * 0.045; // 4.5% of salary
-        return Math.min(sssContribution, SSS_MAX);
+    public static double calculateNetSalary(double basic, double allowance) {
+        double gross = calculateGrossSalary(basic, allowance);
+        double totalDeductions = computeSSS(gross) + computePhilHealth(gross)
+                + computePagIbig(gross) + computeTax(gross);
+        return gross - totalDeductions;
     }
 
-    public static double computePhilHealth(double salary) {
-        double philHealth = salary * 0.025; // 2.5% employee share
-        return Math.min(philHealth, PHILHEALTH_MAX);
+    public static double computeSSS(double gross) {
+        return Math.min(1620.00, gross * 0.045);  // SSS should use gross, not just basic salary
     }
 
-    public static double computePagIbig(double salary) {
-        return (salary < 1500) ? (salary * 0.01) : (salary * 0.02);
+    public static double computePhilHealth(double gross) {
+        double contribution = gross * 0.025;  // Use gross salary
+        return Math.min(contribution, 2250.00); 
     }
 
-    public static double computeTax(double salary) {
+    public static double computePagIbig(double gross) {
+        return Math.min(gross * 0.01, 100.00);  // Should use gross salary
+    }
+
+    public static double computeTax(double gross) {
+        double annual = gross * 12; // Annual computation for tax
         double tax = 0.0;
-        if (salary > 250000) {
-            tax = (salary - 250000) * 0.20; // Example for incomes > ₱250,000
+
+        if (annual <= 250000) {
+            tax = 0.0;
+        } else if (annual <= 400000) {
+            tax = (annual - 250000) * 0.20;
+        } else if (annual <= 800000) {
+            tax = 30000 + (annual - 400000) * 0.25;
+        } else if (annual <= 2000000) {
+            tax = 130000 + (annual - 800000) * 0.30;
+        } else {
+            tax = 490000 + (annual - 2000000) * 0.35;
         }
-        return tax;
-    }
-
-    public static double calculateNetSalary(double basicSalary, double allowance) {
-        double grossSalary = calculateGrossSalary(basicSalary, allowance);
-        double sss = computeSSS(grossSalary);
-        double philHealth = computePhilHealth(grossSalary);
-        double pagIbig = computePagIbig(grossSalary);
-        double tax = computeTax(grossSalary);
-
-        return grossSalary - (sss + philHealth + pagIbig + tax);
+        return tax / 12; // Convert back to monthly
     }
 }
+
+
+

@@ -4,174 +4,109 @@
  */
 package com.mycompany.oopbasedpayrollsystem;
 
-/**
- *
- * @author User
- */
 import javax.swing.JOptionPane;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 public class Payslip extends javax.swing.JFrame {
     private String employeeID;
+    private Employee employee;
+    private EmployeeDatabase employeeDatabase;
 
-    /**
-     * Creates new form Payslip
-     */
-    private EmployeeDashboardGUI dashboard; 
-
-public Payslip(EmployeeDashboardGUI dashboard, String employeeID) {
-    this.dashboard = dashboard; 
-    this.employeeID = employeeID;
-    initComponents();
-    setEmployeeID(employeeID);
-}
-    public Payslip() {
-        initComponents();   
-    }
-     public Payslip(String employeeID) {
+    // ✅ Constructor with Employee ID
+    public Payslip(String employeeID) {
+        this.employeeDatabase = new EmployeeDatabase(); // Initialize database
         this.employeeID = employeeID;
+
+        try {
+            int empID = Integer.parseInt(employeeID.trim()); // ✅ Safe parsing
+            this.employee = this.employeeDatabase.getEmployeeByID(empID);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "❌ Invalid Employee ID!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (this.employee == null) {
+            JOptionPane.showMessageDialog(this, "❌ Employee not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         initComponents();
-        setEmployeeID(employeeID);
+        loadPayslipData();
     }
+
+    // ✅ Default constructor (for UI initialization)
+    public Payslip() {
+        this.employeeDatabase = new EmployeeDatabase(); // ✅ Initialize database
+        initComponents();
+    }
+
+    // ✅ Method to load employee details (called when employeeID changes)
+    private void loadEmployeeDetails(String employeeID) {
+        try {
+            int empID = Integer.parseInt(employeeID.trim());
+            this.employee = this.employeeDatabase.getEmployeeByID(empID);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "❌ Invalid Employee ID!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (this.employee != null) {
+            loadPayslipData();
+        } else {
+            JOptionPane.showMessageDialog(this, "❌ Employee not found!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // ✅ Loads payslip data from the employee object and computes payroll
+    public void loadPayslipData() {
+    if (employee == null) {
+        JOptionPane.showMessageDialog(this, "❌ Employee not found!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // ✅ Load Basic Details
+    txtEmployeeID.setText(String.valueOf(employee.getEmployeeID()));
+    txtName.setText(employee.getFullName());
+    txtPosition.setText(employee.getPosition());
+    txtEmployment.setText(employee.getEmploymentStatus());
+
+    // ✅ Load Salary Breakdown
+    txtBasicSalary.setText(String.format("%.2f", employee.getBasicSalary()));
+    txtAllowance.setText(String.format("%.2f", employee.getAllowance()));
+    txtGrossSalary.setText(String.format("%.2f", employee.getBasicSalary() + employee.getAllowance()));
+
+    // ✅ Load Deductions
+    txtSSS.setText(String.format("%.2f", employee.getSssDeduction()));
+    txtPhilHealth.setText(String.format("%.2f", employee.getPhilHealthDeduction()));
+    txtPagIbig.setText(String.format("%.2f", employee.getPagibigDeduction()));
+    txtTax.setText(String.format("%.2f", employee.getBirTax()));
+
+    // ✅ Compute & Load Net Salary
+    double totalDeductions = employee.getSssDeduction() + employee.getPhilHealthDeduction() + employee.getPagibigDeduction() + employee.getBirTax();
+    txtTotalDeductions.setText(String.format("%.2f", totalDeductions));
+    txtNetSalary.setText(String.format("%.2f", employee.calculateNetSalary()));
+
+    System.out.println("✅ Payslip data loaded for " + employee.getFullName());
+
+    }
+
+    // ✅ Button action for generating payslip (shows a confirmation)
+    private void btnGeneratePayslipActionPerformed(ActionEvent evt) {
+        if (employee != null) {
+            JOptionPane.showMessageDialog(this, "Payslip Generated for " + employee.getFullName());
+        } else {
+            JOptionPane.showMessageDialog(this, "Error: Employee data missing!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // ✅ Set Employee ID and reload data (used when switching screens)
     public void setEmployeeID(String employeeID) {
-    txtEmployeeID.setText(employeeID);
-    loadEmployeeDetails(employeeID); 
-}
-
-private double parseDoubleSafe(String value, double defaultValue) {
-    try {
-        return Double.parseDouble(value.replaceAll("[\",]", "").trim());
-    } catch (NumberFormatException e) {
-        return defaultValue; 
-    }
-}
-
-
-private String parseFormatted(String value) {
-    return String.format("%.2f", parseDoubleSafe(value, 0.00));
-}
-
-private void loadEmployeeDetails(String employeeID) { 
-    String csvFilePath = "C:/Users/User/OneDrive/Documents/NetBeansProjects/OOPBasedPayrollSystem/src/MotorPH Employee Data - Employee Details.csv";
-
-    try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) { 
-        String line;  
-        br.readLine(); // Skip header row  
-
-        while ((line = br.readLine()) != null) {  
-            String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Handle CSV format  
-
-            if (data.length >= 21 && data[0].trim().equals(employeeID)) { // Ensure enough columns  
-                txtEmployeeID.setText(data[0].trim());  
-                txtName.setText(data[2].trim() + " " + data[1].trim());  
-                txtPosition.setText(data[11].trim());  
-                txtEmployment.setText(data[10].trim());  
-                
-                // Convert salary values from CSV to double
-                double basicSalary = parseDoubleSafe(data[13]);  
-                double riceSubsidy = parseDoubleSafe(data[14]);  
-                double phoneAllowance = parseDoubleSafe(data[15]);  
-                double clothingAllowance = parseDoubleSafe(data[16]);  
-
-                // Compute Allowance = Rice Subsidy + Phone + Clothing
-                double totalAllowance = riceSubsidy + phoneAllowance + clothingAllowance;
-                txtBasicSalary.setText(String.format("%.2f", basicSalary));  
-                txtAllowance.setText(String.format("%.2f", totalAllowance));  
-                
-                // Compute Gross Salary
-                double grossSalary = basicSalary + totalAllowance;
-                txtGrossSalary.setText(String.format("%.2f", grossSalary));  
-
-                // Compute deductions
-                double sss = computeSSS(basicSalary);
-                double philHealth = computePhilHealth(basicSalary);
-                double pagIbig = computePagIbig(basicSalary);
-                double tax = computeTax(basicSalary); 
-
-                txtSSS.setText(String.format("%.2f", sss));  
-                txtPhilHealth.setText(String.format("%.2f", philHealth));  
-                txtPagIbig.setText(String.format("%.2f", pagIbig));  
-                txtTax.setText(String.format("%.2f", tax));  
-
-                // Compute total deductions
-                double totalDeductions = sss + philHealth + pagIbig + tax;
-                txtTotalDeductions.setText(String.format("%.2f", totalDeductions));
-
-                // Compute Net Salary
-                double netSalary = grossSalary - totalDeductions;
-                txtNetSalary.setText(String.format("%.2f", netSalary));
-
-                return;  
-            }  
-        }  
-
-        JOptionPane.showMessageDialog(this, "Employee not found!", "Error", JOptionPane.ERROR_MESSAGE);  
-    } catch (IOException e) {  
-        JOptionPane.showMessageDialog(this, "Error loading employee data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);  
-    }  
-}
-
-// Safely parse double values from CSV
-private double parseDoubleSafe(String value) {
-    try {
-        return Double.parseDouble(value.replace(",", "").replace("\"", "").trim());
-    } catch (NumberFormatException e) {
-        return 0.00;  // Default value if parsing fails
-    }
-}
-
-// Compute SSS Contribution (Employee Share)
-private double computeSSS(double basicSalary) {
-    return Math.min(1620.00, basicSalary * 0.045);  // Max cap ₱1,620
-}
-
-// Compute PhilHealth Contribution (Employee Share)
-private double computePhilHealth(double basicSalary) {
-    double contribution = basicSalary * 0.025; // 50% of 5%  
-    return Math.min(contribution, 2250.00); // Max ₱2,250.00
-}
-
-// Compute Pag-IBIG Contribution
-private double computePagIbig(double basicSalary) {
-    return Math.min(basicSalary * 0.01, 100.00); // Capped at ₱100.00
-}
-
-// Compute Withholding Tax (BIR TRAIN Law)
-private double computeTax(double monthlySalary) {
-    double annualSalary = monthlySalary * 12;
-    double tax = 0.00;
-
-    if (annualSalary <= 250000) {
-        tax = 0.00;
-    } else if (annualSalary <= 400000) {
-        tax = (annualSalary - 250000) * 0.20;
-    } else if (annualSalary <= 800000) {
-        tax = 30000 + (annualSalary - 400000) * 0.25;
-    } else if (annualSalary <= 2000000) {
-        tax = 130000 + (annualSalary - 800000) * 0.30;
-    } else {
-        tax = 490000 + (annualSalary - 2000000) * 0.35;
+        this.employeeID = employeeID;
+        loadEmployeeDetails(employeeID);
     }
 
-    return tax / 12;  // Convert to monthly tax
-}
 
-
-
-
-
-
-// Utility method to clean numeric inputs
-private String cleanNumber(String input) {
-    if (input == null || input.trim().isEmpty() || input.trim().equalsIgnoreCase("N/A")) {
-        return "0"; // Default to 0 if invalid
-    }
-    return input.replace("\"", "").replace(",", "").trim();
-}
-
-
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -532,6 +467,7 @@ private String cleanNumber(String input) {
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         txtName.setText(txtName.getText().trim());
+        txtName.setEditable(false);
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void txtEmployeeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmployeeIDActionPerformed
@@ -546,15 +482,22 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
 }
     private void txtEmploymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmploymentActionPerformed
         txtEmployment.setText(txtEmployment.getText().trim());
+        txtEmployment.setEditable(false);
     }//GEN-LAST:event_txtEmploymentActionPerformed
 
     private void txtBasicSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBasicSalaryActionPerformed
-         try {
+        try {
+        // Remove commas and trim spaces before parsing
         double basicSalary = Double.parseDouble(txtBasicSalary.getText().trim().replace(",", ""));
-        txtBasicSalary.setText(String.format("%.2f", basicSalary)); // Format to 2 decimal places
+        
+        // Format the salary to 2 decimal places
+        txtBasicSalary.setText(String.format("%.2f", basicSalary)); 
     } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Invalid salary input. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        // Show error message if input is invalid
+        JOptionPane.showMessageDialog(this, "Invalid salary input. Please enter a valid number.", 
+                                      "Input Error", JOptionPane.ERROR_MESSAGE);
         txtBasicSalary.setText(""); // Clear incorrect input
+        txtBasicSalary.setEditable(false);
     }
     }//GEN-LAST:event_txtBasicSalaryActionPerformed
 
@@ -565,6 +508,7 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Invalid allowance input. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
         txtAllowance.setText("");
+        txtAllowance.setEditable(false);
     }
     }//GEN-LAST:event_txtAllowanceActionPerformed
 
@@ -582,11 +526,13 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
         txtGrossSalary.setText(String.format("%.2f", grossSalary));
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Error calculating Gross Salary. Please check inputs.", "Calculation Error", JOptionPane.ERROR_MESSAGE);
+        txtGrossSalary.setEditable(false);
     }
     }//GEN-LAST:event_txtGrossSalaryActionPerformed
 
     private void txtPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPositionActionPerformed
         txtPosition.setText(txtPosition.getText().trim());
+        txtPosition.setEditable(false);
     }//GEN-LAST:event_txtPositionActionPerformed
 
     private void txtSSSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSSSActionPerformed
@@ -596,6 +542,7 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Invalid SSS input. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
         txtSSS.setText("");
+        txtSSS.setEditable(false);
     }
     }//GEN-LAST:event_txtSSSActionPerformed
 
@@ -606,6 +553,7 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Invalid Pag-IBIG input. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
         txtPagIbig.setText("");
+        txtPagIbig.setEditable(false);
     } 
     }//GEN-LAST:event_txtPagIbigActionPerformed
 
@@ -616,6 +564,7 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Invalid PhilHealth input. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
         txtPhilHealth.setText("");
+        txtPhilHealth.setEditable(false);
     }
     }//GEN-LAST:event_txtPhilHealthActionPerformed
 
@@ -626,6 +575,7 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Invalid Tax input. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
         txtTax.setText("");
+        txtTax.setEditable(false);
     }
     }//GEN-LAST:event_txtTaxActionPerformed
 
@@ -643,6 +593,7 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
         txtTotalDeductions.setText(String.format("%.2f", totalDeductions));
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Error calculating Total Deductions. Please check inputs.", "Calculation Error", JOptionPane.ERROR_MESSAGE);
+        txtTotalDeductions.setEditable(false);
     }
     }//GEN-LAST:event_txtTotalDeductionsActionPerformed
 
@@ -654,6 +605,7 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
         txtNetSalary.setText(String.format("%.2f", netSalary));
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Error calculating Net Salary. Please check inputs.", "Calculation Error", JOptionPane.ERROR_MESSAGE);
+        txtNetSalary.setEditable(false);
     }
     }//GEN-LAST:event_txtNetSalaryActionPerformed
 

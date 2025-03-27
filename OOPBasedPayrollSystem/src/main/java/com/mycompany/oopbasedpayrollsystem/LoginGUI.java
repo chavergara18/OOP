@@ -4,11 +4,13 @@
  */
 package com.mycompany.oopbasedpayrollsystem;
 
+
 /**
  *
  * @author User
  */
 import javax.swing.JOptionPane;
+import java.io.File;
 
 public class LoginGUI extends javax.swing.JFrame {
 
@@ -49,7 +51,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
-        jLabel1.setText("Welcom to Payroll System");
+        jLabel1.setText("Welcome to Payroll System");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Username:");
@@ -146,7 +148,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(169, 169, 169)
                         .addComponent(jLabel1)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -182,29 +184,22 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldPasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String username = jTextFieldUserName.getText().trim();
-        String password = new String(jPasswordFieldPassword.getPassword()).trim();
+String username = jTextFieldUserName.getText().trim();
+String password = new String(jPasswordFieldPassword.getPassword()).trim();
 
-// Load credentials from a secure CSV file
-        String csvFilePath = "C:/Users/User/OneDrive/Documents/NetBeansProjects/OOPBasedPayrollSystem/src/MotorPH_Credentials.csv";
-        EmployeeDatabase db = new EmployeeDatabase(csvFilePath);
+EmployeeDatabase db = new EmployeeDatabase();
+int empID = db.validateLogin(username, password); // ✅ Validate login
 
-     try {
-        int empID = db.validateLogin(username, password);
+if (empID != -1) { // ✅ Check for valid login (assuming -1 means failure)
+    System.out.println("✅ Login successful! Employee ID: " + empID);
+    this.setVisible(false);  // Hide login GUI
 
-      if (empID != -1) {
-        JOptionPane.showMessageDialog(this, "Login Successful! Employee ID: " + empID);
-        
-        EmployeeDashboardGUI dashboard = new EmployeeDashboardGUI();
-        dashboard.setEmployeeID(String.valueOf(empID)); 
-        dashboard.setVisible(true);
-        
-        this.dispose(); 
-   }   else {
-        JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
-    }
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Error accessing credentials database: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+    // ✅ Open Employee Dashboard GUI
+    EmployeeDashboardGUI dashboard = new EmployeeDashboardGUI();
+    dashboard.setEmployeeID(String.valueOf(empID)); // ✅ Pass employee ID as String
+    dashboard.setVisible(true);
+} else {
+    JOptionPane.showMessageDialog(this, "❌ Invalid Username or Password!", "Login Failed", JOptionPane.ERROR_MESSAGE);
 }
     }//GEN-LAST:event_jButton1ActionPerformed
 

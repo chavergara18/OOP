@@ -50,7 +50,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="174" max="32767" attributes="0"/>
+              <EmptySpace pref="149" max="32767" attributes="0"/>
           </Group>
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -89,7 +89,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="48" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Welcom to Payroll System"/>
+        <Property name="text" type="java.lang.String" value="Welcome to Payroll System"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

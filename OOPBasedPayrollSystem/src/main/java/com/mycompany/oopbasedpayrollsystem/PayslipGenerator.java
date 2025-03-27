@@ -15,15 +15,15 @@ public class PayslipGenerator {
 
     public static void generatePayslip(Employee employee) {
         // Retrieve salary details from employee object
-        double basicSalary = employee.getGrossSalary(); //  Ensure correct salary retrieval
-        double allowance = employee.getAllowance(); //  Retrieve allowance
+        double basicSalary = employee.getBasicSalary(); // Ensured correct salary retrieval
+        double allowance = employee.getAllowance(); // Retrieve allowance
 
         // Compute salary components
         double grossSalary = PayrollCalculator.calculateGrossSalary(basicSalary, allowance);
-        double sssDeduction = PayrollCalculator.computeSSS(grossSalary);
-        double philHealthDeduction = PayrollCalculator.computePhilHealth(grossSalary);
-        double pagIbigDeduction = PayrollCalculator.computePagIbig(grossSalary); //  Now passing salary
-        double taxDeduction = PayrollCalculator.computeTax(grossSalary);
+        double sssDeduction = PayrollCalculator.computeSSS(basicSalary);
+        double philHealthDeduction = PayrollCalculator.computePhilHealth(basicSalary);
+        double pagIbigDeduction = PayrollCalculator.computePagIbig(basicSalary);
+        double taxDeduction = PayrollCalculator.computeTax(basicSalary);
         double totalDeductions = sssDeduction + philHealthDeduction + pagIbigDeduction + taxDeduction;
         double netSalary = grossSalary - totalDeductions;
 
@@ -33,7 +33,7 @@ public class PayslipGenerator {
         System.out.println("=========================================");
         System.out.println("Date: " + LocalDate.now());
         System.out.println("Employee ID: " + employee.getEmployeeID());
-        System.out.println("Name: " + employee.getFirstName() + " " + employee.getSurname());
+        System.out.println("Name: " + employee.getFirstName() + " " + employee.getLastName()); // Fixed here
         System.out.println("Position: " + employee.getPosition());
         System.out.println("-----------------------------------------");
         System.out.printf("Basic Salary:   PHP %,10.2f%n", basicSalary);
@@ -57,7 +57,7 @@ public class PayslipGenerator {
                 "=========================================\n" +
                 "Date: %s\n" +
                 "Employee ID: %s\n" +
-                "Name: %s %s\n" +
+                "Name: %s %s\n" +  // Fixed here
                 "Position: %s\n" +
                 "-----------------------------------------\n" +
                 "Basic Salary:   PHP %,10.2f\n" +
@@ -75,7 +75,7 @@ public class PayslipGenerator {
                 "=========================================",
                 LocalDate.now(), 
                 employee.getEmployeeID(), 
-                employee.getFirstName(), employee.getSurname(), 
+                employee.getFirstName(), employee.getLastName(), // Fixed here
                 employee.getPosition(),
                 basicSalary, allowance, grossSalary,
                 sssDeduction, philHealthDeduction, pagIbigDeduction, taxDeduction,
@@ -86,3 +86,4 @@ public class PayslipGenerator {
         JOptionPane.showMessageDialog(null, payslip, "Payslip", JOptionPane.INFORMATION_MESSAGE);
     }
 }
+
