@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="payslip_template_with_logo_sign" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="20" uuid="2e51c823-71e9-4a26-b262-3e1aef3d6698" xmlns="http://jasperreports.sourceforge.net/jasperreports" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+  <field name="employeeID" class="java.lang.String"/>
+  <field name="firstName" class="java.lang.String"/>
+  <field name="lastName" class="java.lang.String"/>
+  <field name="position" class="java.lang.String"/>
+  <field name="basicSalary" class="java.lang.Double"/>
+  <field name="allowance" class="java.lang.Double"/>
+  <field name="sssDeduction" class="java.lang.Double"/>
+  <field name="philHealthDeduction" class="java.lang.Double"/>
+  <field name="pagibigDeduction" class="java.lang.Double"/>
+  <field name="birTax" class="java.lang.Double"/>
+  <field name="netSalary" class="java.lang.Double"/>
+  <field name="generatedDate" class="java.lang.String"/>
+  <title>
+    <band height="80">
+      <staticText>
+        <reportElement x="0" y="0" width="300" height="30" uuid="22053463-7688-4ebe-b918-d2102d5c430f"/>
+        <textElement textAlignment="Left">
+          <font size="16" isBold="true" pdfFontName="Helvetica-Bold"/>
+        </textElement>
+        <text>🚗 MOTORPH Corporation</text>
+      </staticText>
+      <staticText>
+        <reportElement x="0" y="35" width="555" height="30" uuid="d05a94c3-42be-43b7-be24-fc84203c3676"/>
+        <textElement textAlignment="Center" verticalAlignment="Middle">
+          <font size="18" isBold="true"/>
+        </textElement>
+        <text>Employee Payslip</text>
+      </staticText>
+      <textField>
+        <reportElement x="350" y="10" width="200" height="20" uuid="d43f88e8-f950-4d45-8dd7-a4a9d8e72537"/>
+        <textElement textAlignment="Right">
+          <font size="10" isItalic="true"/>
+        </textElement>
+        <textFieldExpression class="java.lang.String">$F{generatedDate}</textFieldExpression>
+      </textField>
+    </band>
+  </title>
+  <detail>
+    <band height="420">
+      <staticText>
+        <reportElement x="40" y="0" width="150" height="20" uuid="b30be544-cf16-4473-92b8-1ca45852e499"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>Employee ID:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="0" width="300" height="20" uuid="b672ed12-5c2f-400a-9d6e-1e64af7915a9"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{employeeID}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="25" width="150" height="20" uuid="bbfa0255-cbd7-4edf-b820-756ad9ce4283"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>Name:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="25" width="300" height="20" uuid="27ef5032-409a-4112-9ae2-b29341f3abf8"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{firstName} + " " + $F{lastName}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="50" width="150" height="20" uuid="0f16e8fe-0b05-49da-b964-2433b81cdca1"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>Position:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="50" width="300" height="20" uuid="5f4c9660-482c-4707-a23e-400e8853ae44"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{position}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="75" width="150" height="20" uuid="d2d8ac75-8454-4658-ac17-a57e5a6a369d"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>Basic Salary:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="75" width="300" height="20" uuid="ce7c9364-1a22-4082-b647-bebfac5243cd"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{basicSalary}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="100" width="150" height="20" uuid="9ce3e371-35e7-4f4e-843f-7a0f3e2f0d8b"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>Allowance:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="100" width="300" height="20" uuid="da68a58f-9e8c-429a-9963-253e5942e3b3"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{allowance}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="125" width="150" height="20" uuid="7753c5a3-a64c-465d-a859-3a4b05b0f03c"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>SSS:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="125" width="300" height="20" uuid="ef96b7f8-6692-435f-b926-a1e7cfa2fc05"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{sssDeduction}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="150" width="150" height="20" uuid="2a84307e-fe01-4633-9188-85e88500a0c2"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>PhilHealth:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="150" width="300" height="20" uuid="88524b5b-26fb-49cd-948f-14ef9045a11b"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{philHealthDeduction}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="175" width="150" height="20" uuid="96d33bd2-fdff-435d-9666-52c80412f9a8"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>Pag-IBIG:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="175" width="300" height="20" uuid="371d47cd-f398-445c-b600-295f462e172d"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{pagibigDeduction}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="200" width="150" height="20" uuid="6f5217e3-9389-4f44-9bd5-2daab7c8a1de"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>Tax:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="200" width="300" height="20" uuid="e44595b1-5c9e-4fd0-85c5-4d3f08ee32ec"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{birTax}</textFieldExpression>
+      </textField>
+      <staticText>
+        <reportElement x="40" y="225" width="150" height="20" uuid="ae7020db-d16c-42fd-a92d-614308436cf3"/>
+        <textElement>
+          <font isBold="true"/>
+        </textElement>
+        <text>Net Salary:</text>
+      </staticText>
+      <textField>
+        <reportElement x="200" y="225" width="300" height="20" uuid="34d59d41-c78e-46fd-b6cf-a9384a0acfba"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.String">$F{netSalary}</textFieldExpression>
+      </textField>
+    </band>
+  </detail>
+  <summary>
+    <band height="80">
+      <staticText>
+        <reportElement x="40" y="20" width="200" height="20" uuid="4d483220-ac7e-49db-8b36-39e88ce9fe9d"/>
+        <text>__________________________</text>
+      </staticText>
+      <staticText>
+        <reportElement x="40" y="40" width="200" height="20" uuid="bc8c57e2-9e6d-4a7a-861f-a4f781c40ff7"/>
+        <text>Employee Signature</text>
+      </staticText>
+      <staticText>
+        <reportElement x="300" y="20" width="200" height="20" uuid="604101a1-0d9c-4847-b5d6-efea981eeaec"/>
+        <text>__________________________</text>
+      </staticText>
+      <staticText>
+        <reportElement x="300" y="40" width="200" height="20" uuid="a9fb2854-9318-4746-aad8-b029ed672976"/>
+        <text>Authorized Signature</text>
+      </staticText>
+    </band>
+  </summary>
+</jasperReport>
