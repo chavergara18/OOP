@@ -6,6 +6,17 @@ package com.mycompany.oopbasedpayrollsystem;
 
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import javax.swing.JOptionPane;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 
 public class Payslip extends javax.swing.JFrame {
     private String employeeID;
@@ -516,33 +527,48 @@ private void txtEmployeeIDKeyTyped(java.awt.event.KeyEvent evt) {
 
     private void btnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit1ActionPerformed
 if (employee != null) {
-        // Create a PayslipData object from the current employee
-        PayslipData data = new PayslipData(
-            employeeID,
-            employee.getFirstName(),
-            employee.getLastName(),
-            employee.getPosition(),
-            employee.getBasicSalary(),
-            employee.getAllowance(),
-            employee.getSssDeduction(),
-            employee.getPhilHealthDeduction(),
-            employee.getPagibigDeduction(),
-            employee.getBirTax(),
-            employee.calculateNetSalary(),
-            java.time.LocalDate.now().toString()
-        );
+        try {
+            // Prepare the values using default field names
+            Map<String, Object> dataMap = new HashMap<>();
+            dataMap.put("field1", employee.getFirstName() + " " + employee.getLastName()); // Full Name
+            dataMap.put("field2", employee.getPosition() + " / " + employee.getDepartment()); // Position / Department
+            dataMap.put("field3", employee.getMonthlyRate()); // Monthly Rate
+            dataMap.put("field4", employee.getDailyRate()); // Daily Rate
+            dataMap.put("field5", employee.getDaysWorked()); // Days Worked
+            dataMap.put("field6", employee.getOvertimeHours()); // Overtime Hours
+            dataMap.put("field7", employee.getGrossSalary()); // Gross Income
+            dataMap.put("field8", employee.getRiceSubsidy()); // Rice Subsidy
+            dataMap.put("field9", employee.getPhoneAllowance()); // Phone Allowance
+            dataMap.put("field10", employee.getClothingAllowance()); // Clothing Allowance
+            dataMap.put("field11", employee.getTotalBenefits()); // Total Benefits
+            dataMap.put("field12", employee.getSssDeduction()); // SSS
+            dataMap.put("field13", employee.getPhilHealthDeduction()); // Philhealth
+            dataMap.put("field14", employee.getPagibigDeduction()); // Pagibig
+            dataMap.put("field15", employee.getWithholdingTax()); // Withholding Tax
+            dataMap.put("field16", employee.getTotalDeductions()); // Total Deductions
+            dataMap.put("field17", employee.getTakeHomePay()); // Take Home Pay
+            dataMap.put("field18", employee.getPayslipNo());        // Payslip No
+            dataMap.put("field19", employee.getEmployeeID());       // Employee ID
+            dataMap.put("field20", employee.getPeriodStart());      // Period Start Date
+            dataMap.put("field21", employee.getPeriodEnd());    
+            
+            // Compile and fill the report
+            String jrxmlPath = "C:/Users/Seany/Desktop/TEMPORARY STUFF REMEMBER TO ORGANIZE/OOP-main/OOPBasedPayrollSystem/reports/payslip_template2.jrxml";
+            JasperReport report = JasperCompileManager.compileReport(jrxmlPath);
+            JasperPrint print = JasperFillManager.fillReport(report, dataMap, new JREmptyDataSource());
 
-        // Generate the PDF using JasperReports
-        PayslipReportGenerator generator = new PayslipReportGenerator();
-        generator.generateReport(data, "Payslip_" + employee.getEmployeeID() + ".pdf");
-
-        JOptionPane.showMessageDialog(this, "✅ Payslip generated successfully.");
+            // Export to PDF
+            String filename = "Payslip_" + employee.getEmployeeID() + ".pdf";
+            JasperExportManager.exportReportToPdfFile(print, filename);
+            JOptionPane.showMessageDialog(this, "✅ Payslip generated: " + filename);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "❌ Error generating payslip: " + ex.getMessage());
+        }
     } else {
         JOptionPane.showMessageDialog(this, "❌ Employee details are missing.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
     }//GEN-LAST:event_btnExit1ActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */

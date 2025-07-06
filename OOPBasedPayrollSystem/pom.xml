@@ -49,7 +49,16 @@
             <artifactId>jasperreports</artifactId>
             <version>6.21.0</version>
         </dependency>
-
+         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.13.0-RC1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.21.0</version>
+        </dependency>
     </dependencies>
 
     <build>

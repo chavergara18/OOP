@@ -194,32 +194,31 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldPasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String username = jTextFieldUserName.getText().trim();
-        String password = new String(jPasswordFieldPassword.getPassword()).trim();
+    String username = jTextFieldUserName.getText().trim();
+    String password = new String(jPasswordFieldPassword.getPassword()).trim();
 
-        // 1. Try Admin Login
-        if (LoginSystem.validateAdminLogin(username, password)) {
-            System.out.println("✅ Admin login successful!");
-            this.setVisible(false);
+    // 1. Try Admin Login
+    if (LoginSystem.validateAdminLogin(username, password)) {
+        System.out.println("✅ Admin login successful!");
+        this.setVisible(false);
 
-            // You can replace this with an Admin Dashboard later if needed
-            EmployeeDashboardGUI dashboard = new EmployeeDashboardGUI();
-            dashboard.setVisible(true);
-            return;
-        }
+        // Open HRDashboard for admin
+        HRDashboard hrDashboard = new HRDashboard();
+        hrDashboard.setVisible(true);
+        return;
+    }
 
-        // 2. Try Employee Login
-        int empID = LoginSystem.validateEmployeeLogin(username, password);
-        if (empID != -1) {
-            System.out.println("✅ Employee login successful! ID: " + empID);
-            this.setVisible(false);
-
-            EmployeeDashboardGUI dashboard = new EmployeeDashboardGUI();
-            dashboard.setEmployeeID(String.valueOf(empID));
-            dashboard.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "❌ Invalid username or password!", "Login Failed", JOptionPane.ERROR_MESSAGE);
-        }
+    // 2. Try Employee Login
+    int empID = LoginSystem.validateEmployeeLogin(username, password);
+    if (empID != -1) {
+        System.out.println("✅ Employee login successful! ID: " + empID);
+        this.setVisible(false);
+        EmployeeDashboardGUI dashboard = new EmployeeDashboardGUI();
+        dashboard.setEmployeeID(String.valueOf(empID));
+        dashboard.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this, "❌ Invalid username or password!", "Login Failed", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -11,7 +11,7 @@ public class EmployeeDatabase {
     }
 
     private void loadEmployeesFromDatabase() {
-        String query = "SELECT * FROM employees";
+        String query = "SELECT e.*, p.payslip_no, p.period_start, p.period_end FROM employees e LEFT JOIN payslips p ON e.id = p.employee_id";
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -38,11 +38,14 @@ public class EmployeeDatabase {
                 double philhealthDeduction = rs.getDouble("philhealth_deduction");
                 double pagibigDeduction = rs.getDouble("pagibig_deduction");
                 double birTax = rs.getDouble("bir_tax");
+                String payslipNo = rs.getString("payslip_no");
+                java.sql.Date periodStart = rs.getDate("period_start");
+                java.sql.Date periodEnd = rs.getDate("period_end");
 
                 Employee emp = new Employee(id, name, firstName, lastName, position, department, email, password,
                         dateHired, basicSalary, allowance, phoneNumber,
                         sssNumber, philhealthNumber, pagibigNumber, tinNumber, address,
-                        sssDeduction, philhealthDeduction, pagibigDeduction, birTax);
+                        sssDeduction, philhealthDeduction, pagibigDeduction, birTax, payslipNo, periodStart, periodEnd);
 
                 employees.put(id, emp);
             }

@@ -22,6 +22,28 @@
 	<parameter name="withholding_tax" class="java.lang.Double"/>
 	<parameter name="total_deductions" class="java.lang.Double"/>
 	<parameter name="take_home_pay" class="java.lang.Double"/>
+	<parameter name="field0" class="java.lang.String"/>
+	<parameter name="field1" class="java.lang.String"/>
+	<parameter name="field2" class="java.lang.String"/>
+	<parameter name="field3" class="java.lang.Double"/>
+	<parameter name="field4" class="java.lang.Double"/>
+	<parameter name="field5" class="java.lang.Integer"/>
+	<parameter name="field6" class="java.lang.Double"/>
+	<parameter name="field7" class="java.lang.Double"/>
+	<parameter name="field8" class="java.lang.Double"/>
+	<parameter name="field9" class="java.lang.Double"/>
+	<parameter name="field10" class="java.lang.Double"/>
+	<parameter name="field11" class="java.lang.Double"/>
+	<parameter name="field12" class="java.lang.Double"/>
+	<parameter name="field13" class="java.lang.Double"/>
+	<parameter name="field14" class="java.lang.Double"/>
+	<parameter name="field15" class="java.lang.Double"/>
+	<parameter name="field16" class="java.lang.Double"/>
+	<parameter name="field17" class="java.lang.Double"/>
+	<parameter name="field21" class="java.util.Date"/>
+	<parameter name="field20" class="java.util.Date"/>
+	<parameter name="field19" class="java.lang.Integer"/>
+	<parameter name="field18" class="java.lang.String"/>
 	<title>
 		<band height="120">
 			<staticText>
@@ -52,7 +74,7 @@
 				</textElement>
 				<text><![CDATA[Email: corporate@motorph.com]]></text>
 			</staticText>
-			<image scaleImage="Clip" hAlign="Center" vAlign="Middle">
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
 				<reportElement x="23" y="0" width="98" height="91" uuid="53b080f7-c378-4c33-a233-b279f66110d0"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<imageExpression><![CDATA["C:/Users/Seany/Desktop/TEMPORARY STUFF REMEMBER TO ORGANIZE/OOP-main/OOPBasedPayrollSystem/motorphlogo.png"]]></imageExpression>
@@ -77,80 +99,80 @@
 			</staticText>
 			<textField>
 				<reportElement x="23" y="94" width="306" height="15" uuid="e9c101c7-5407-4e65-aceb-158dc702d414"/>
-				<textFieldExpression><![CDATA[Monthly Rate:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Monthly Rate:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="23" y="109" width="306" height="15" uuid="8c418006-b63e-4908-b1a6-950348c4c70c"/>
-				<textFieldExpression><![CDATA[Daily Rate:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Daily Rate:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="23" y="124" width="306" height="15" uuid="9fcacd40-dd32-4911-a33c-8f23903be152"/>
-				<textFieldExpression><![CDATA[Days Worked:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Days Worked:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="23" y="139" width="306" height="15" uuid="731b5755-2dc4-41e4-9bc4-73c06f157aec"/>
-				<textFieldExpression><![CDATA[Overtime:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Overtime:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="23" y="164" width="488" height="15" backcolor="#EDEFF0" uuid="a489f726-aaec-44af-a085-138a9d679453"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[GROSS INCOME:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["GROSS INCOME:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="22" y="209" width="306" height="15" uuid="e394e1eb-6e83-4362-9dac-6ade62b7688b"/>
-				<textFieldExpression><![CDATA[Rice Subsidy:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Rice Subsidy:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="23" y="224" width="305" height="15" uuid="4147c40a-6836-45f9-a17e-025122fe0346"/>
-				<textFieldExpression><![CDATA[Phone Allowance:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Phone Allowance:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="23" y="239" width="306" height="15" uuid="df10e396-49bc-4f99-9048-47943991d0bb"/>
-				<textFieldExpression><![CDATA[Clothing Allowance:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Clothing Allowance:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="22" y="264" width="488" height="15" backcolor="#EDEFF0" uuid="64c96fd7-89b2-431e-b491-ec24d3abf923"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[TOTAL:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["TOTAL:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="21" y="308" width="189" height="15" uuid="f34a9e30-c4e9-4676-9d67-9ecb9b29f5ae"/>
-				<textFieldExpression><![CDATA[SSS:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["SSS:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="21" y="323" width="189" height="15" uuid="14a279b1-1dc5-4d21-a047-9dd3180e7fa1"/>
-				<textFieldExpression><![CDATA[PhilHealth:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PhilHealth:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="21" y="338" width="189" height="15" uuid="cb1ef811-96f4-49e0-8e54-b7b8f889031c"/>
-				<textFieldExpression><![CDATA[Pag-IBIG:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Pag-IBIG:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="21" y="353" width="229" height="15" uuid="bbe104c3-4c5c-4e3e-aadc-99f43e4f1029"/>
-				<textFieldExpression><![CDATA[Withholding Tax:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Withholding Tax:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="21" y="378" width="491" height="15" backcolor="#EDEFF0" uuid="005f8360-aa9b-402b-98c5-c42a05c3c22d"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[TOTAL DEDUCTIONS:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["TOTAL DEDUCTIONS:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="19" y="420" width="261" height="15" uuid="b41a8110-ed74-473c-832a-2c090840b59a"/>
-				<textFieldExpression><![CDATA[Gross Income:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Gross Income:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="19" y="435" width="261" height="15" uuid="a2307863-9d1e-4340-89e0-1217b5e3dcef"/>
-				<textFieldExpression><![CDATA[Benefits:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Benefits:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="19" y="450" width="261" height="15" uuid="972118a0-c235-40ec-9e17-f96f16f10e21"/>
-				<textFieldExpression><![CDATA[Deductions:]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Deductions:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="19" y="470" width="490" height="20" backcolor="#EDEFF0" uuid="b2f60f37-7281-4158-81a8-819cbfc675f2"/>
@@ -166,7 +188,7 @@
 				<textElement markup="html">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[PAYSLIP NO]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PAYSLIP NO:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="23" y="25" width="100" height="15" forecolor="#FFFFFF" backcolor="#626769" uuid="4992144f-4827-43ec-aa50-4a4b4c0078eb">
@@ -175,19 +197,19 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[EMPLOYEE ID]]></textFieldExpression>
+				<textFieldExpression><![CDATA["EMPLOYEE ID:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="23" y="40" width="100" height="27" forecolor="#FFFFFF" backcolor="#626769" uuid="e0062a30-12f9-4972-bd06-1140c1eb4ad1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[EMPLOYEE NAME]]></textFieldExpression>
+				<textFieldExpression><![CDATA["EMPLOYEE NAME:"]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="123" y="10" width="146" height="15" uuid="010e43ee-1968-42e0-825b-a61c032e7be0">
+			<textField>
+				<reportElement x="123" y="10" width="146" height="15" uuid="68114899-3498-4fad-af85-ebe639e7ab82">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -197,10 +219,10 @@
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<text><![CDATA[$P{payslip_no}]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="123" y="25" width="146" height="15" uuid="44480045-d116-4457-b314-c8121e2900fa">
+				<textFieldExpression><![CDATA[$P{field18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="25" width="146" height="15" uuid="b71b91dd-09d2-4ba2-8015-f4cda0e5687b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -210,10 +232,10 @@
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<text><![CDATA[$P{employee_id}]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="123" y="40" width="146" height="27" uuid="9e141b3c-a725-43e9-923b-404bd6d90783">
+				<textFieldExpression><![CDATA[$P{field19}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="40" width="146" height="27" uuid="217ed37c-f438-406b-8a3f-fdf3f02aad0a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -224,8 +246,8 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[$P{employee_name}]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{field1}]]></textFieldExpression>
+			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="270" y="10" width="100" height="15" forecolor="#FFFFFF" backcolor="#626769" uuid="28d92ffa-fae4-4660-bdb9-e2738dc3ff09">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -233,7 +255,7 @@
 				<textElement markup="html">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[PERIOD START DATE]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PERIOD START DATE:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="270" y="25" width="100" height="15" forecolor="#FFFFFF" backcolor="#626769" uuid="d9c604b7-0421-452e-9c09-60202b0db2f0">
@@ -242,7 +264,7 @@
 				<textElement markup="html">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[PERIOD END DATE]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PERIOD END DATE:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="270" y="40" width="100" height="27" forecolor="#FFFFFF" backcolor="#626769" uuid="51e04d62-6550-4a47-87c3-52d4b8455324">
@@ -251,10 +273,10 @@
 				<textElement markup="html">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[EMPLOYEE POSITION]]></textFieldExpression>
+				<textFieldExpression><![CDATA["EMPLOYEE POSITION:"]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="370" y="10" width="146" height="15" uuid="bb6b9170-c242-44cd-bc73-868635b16cd8">
+			<textField>
+				<reportElement x="370" y="10" width="146" height="15" uuid="b0b3e5e3-3357-41d2-8b04-e74f6722bbdb">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -265,10 +287,10 @@
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<text><![CDATA[$P{period_start}]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="370" y="25" width="146" height="15" uuid="49fbc635-c8bc-4370-80f4-7d756e8bc9a6">
+				<textFieldExpression><![CDATA[$P{field20}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="25" width="146" height="15" uuid="c714884d-6166-4f08-af43-0f2e9e7b43e1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -279,10 +301,10 @@
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<text><![CDATA[$P{period_end}]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="370" y="40" width="146" height="27" uuid="6e2d3ad7-314a-4f9b-8fa6-9bb3d7936c83">
+				<textFieldExpression><![CDATA[$P{field21}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="40" width="146" height="27" uuid="7b6e7019-5d4e-4aaf-8b6d-c836c1fdcf81">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -294,34 +316,34 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[$P{position_department}]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{field2}]]></textFieldExpression>
+			</textField>
 			<textField>
 				<reportElement x="400" y="94" width="112" height="15" uuid="f678c983-866e-46d6-8d93-350c42019ac4"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{monthly_rate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field3}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="400" y="109" width="112" height="15" uuid="b6c792f7-723f-4ad5-906d-fa546445f137"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{daily_rate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field4}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="400" y="124" width="112" height="15" uuid="38034471-17c8-451a-b058-65706a759bdb"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{days_worked}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field5}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="400" y="139" width="112" height="15" uuid="f57044a6-07df-4dd6-af35-cdaa5bc2806d"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{overtime_hours}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field6}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="390" y="164" width="120" height="15" uuid="ecfd1e2b-05b3-4e4e-8433-d4f5a2711c99"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["₱"+$P{gross_income}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field7}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="23" y="189" width="492" height="20" forecolor="#FFFFFF" backcolor="#5F6466" uuid="e1162d77-a188-4819-b796-59b697fd91d7"/>
@@ -333,24 +355,24 @@
 			<textField>
 				<reportElement x="350" y="209" width="162" height="15" uuid="4c8a85ae-da46-438b-a4b8-850647b10076"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{rice_subsidy}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field8}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="224" width="161" height="15" uuid="927de127-2c7f-4bf2-a63f-d7d1dd546868"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{phone_allowance}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field9}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="239" width="162" height="15" uuid="208f1811-914a-4fea-9546-93fe45e3bb4a"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{clothing_allowance}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field10}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="264" width="162" height="15" uuid="0f4e3a2b-112d-4f43-98d3-c51599210be6"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["₱"+$P{total_benefits}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field11}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="21" y="288" width="492" height="20" forecolor="#FFFFFF" backcolor="#5F6466" uuid="2ecf13f8-18c5-4fdf-987c-af98ef7b29e9"/>
@@ -362,29 +384,29 @@
 			<textField>
 				<reportElement x="323" y="308" width="189" height="15" uuid="8490131b-5235-44e1-b90d-281530ae7be0"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{sss}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field12}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="323" y="323" width="189" height="15" uuid="4b85899f-9b86-4bca-a463-80e93364e765"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{philhealth}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field13}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="323" y="338" width="189" height="15" uuid="68119b6e-1737-4bd0-b5cb-3bc6e255b5fa"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{pagibig}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field14}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="322" y="353" width="190" height="15" uuid="dce407d1-b24b-459c-bd9e-f65cac9f7d83"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{withholding_tax}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field15}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="322" y="378" width="190" height="15" uuid="c894b50e-9aa3-44ab-ab16-86db56cc763a"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["₱"+$P{total_deductions}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field16}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="19" y="400" width="492" height="20" forecolor="#FFFFFF" backcolor="#5F6466" uuid="5ec0eb6a-5067-44fc-b601-15f38d2ba76e"/>
@@ -396,24 +418,24 @@
 			<textField>
 				<reportElement x="350" y="420" width="160" height="15" uuid="6758e9f9-a95e-483d-b6d2-5f2c5bd3e989"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{gross_income}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field7}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="435" width="160" height="15" uuid="bda1f119-0ba7-439e-9cfa-14d6043991a5"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{total_benefits}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field11}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="450" width="160" height="15" uuid="b3dbab4e-a444-4ccf-ae9a-adcbe0f2f1e8"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["₱"+$P{total_deductions}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field16}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="340" y="470" width="168" height="20" uuid="16882d59-a4de-4512-b7b3-70333dedfb21"/>
 				<textElement textAlignment="Right">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["₱"+$P{take_home_pay}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["₱"+$P{field17}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

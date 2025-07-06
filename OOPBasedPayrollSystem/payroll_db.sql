@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2025 at 04:54 PM
+-- Generation Time: Jul 06, 2025 at 06:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -114,6 +114,42 @@ CREATE TABLE `leave_applications` (
 INSERT INTO `leave_applications` (`id`, `employee_id`, `leave_type`, `start_date`, `end_date`, `status`) VALUES
 (1, 1, 'Sick Leave', '2025-10-15', '2025-10-15', 'Pending');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payslips`
+--
+
+CREATE TABLE `payslips` (
+  `id` int(11) NOT NULL,
+  `payslip_no` varchar(50) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `period_start` date NOT NULL,
+  `period_end` date NOT NULL,
+  `monthly_rate` double DEFAULT 0,
+  `daily_rate` double DEFAULT 0,
+  `days_worked` int(11) DEFAULT 0,
+  `overtime_hours` double DEFAULT 0,
+  `gross_income` double DEFAULT 0,
+  `rice_subsidy` double DEFAULT 0,
+  `phone_allowance` double DEFAULT 0,
+  `clothing_allowance` double DEFAULT 0,
+  `total_benefits` double DEFAULT 0,
+  `sss` double DEFAULT 0,
+  `philhealth` double DEFAULT 0,
+  `pagibig` double DEFAULT 0,
+  `withholding_tax` double DEFAULT 0,
+  `total_deductions` double DEFAULT 0,
+  `take_home_pay` double DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payslips`
+--
+
+INSERT INTO `payslips` (`id`, `payslip_no`, `employee_id`, `period_start`, `period_end`, `monthly_rate`, `daily_rate`, `days_worked`, `overtime_hours`, `gross_income`, `rice_subsidy`, `phone_allowance`, `clothing_allowance`, `total_benefits`, `sss`, `philhealth`, `pagibig`, `withholding_tax`, `total_deductions`, `take_home_pay`) VALUES
+(1, '31-2023-12-30', 1, '2023-12-18', '2023-12-31', 20000, 1000, 10, 2, 12000, 1500, 2000, 1000, 4500, 500, 300, 100, 0, 900, 15600);
+
 --
 -- Indexes for dumped tables
 --
@@ -146,6 +182,13 @@ ALTER TABLE `leave_applications`
   ADD KEY `employee_id` (`employee_id`);
 
 --
+-- Indexes for table `payslips`
+--
+ALTER TABLE `payslips`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `employee_id` (`employee_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -174,6 +217,12 @@ ALTER TABLE `leave_applications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `payslips`
+--
+ALTER TABLE `payslips`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -188,6 +237,12 @@ ALTER TABLE `attendance`
 --
 ALTER TABLE `leave_applications`
   ADD CONSTRAINT `leave_applications_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
+
+--
+-- Constraints for table `payslips`
+--
+ALTER TABLE `payslips`
+  ADD CONSTRAINT `payslips_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
