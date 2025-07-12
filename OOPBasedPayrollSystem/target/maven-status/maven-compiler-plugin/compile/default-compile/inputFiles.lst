@@ -1,23 +1,26 @@
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\AddEmployeeDialog.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\BaseGUI.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\Credential.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\CSVTest.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\DatabaseConnection.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\EditEmployeeDialog.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\Employee.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\EmployeeDashboardGUI.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\EmployeeDatabase.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\HRDashboard.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\LeaveApplication.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\LoginGUI.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\LoginSystem.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\OOPBasedPayrollSystem.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\PayrollCalculator.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\Payslip.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\PayslipDAO.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\PayslipData.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\PayslipReportGenerator.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\User.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\com\mycompany\oopbasedpayrollsystem\UserActions.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\database\DatabaseConnection.java
-C:\Users\Seany\Desktop\TEMPORARY STUFF REMEMBER TO ORGANIZE\OOP-main\OOPBasedPayrollSystem\src\main\java\database\EmployeeDatabase.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\database\DatabaseConnection.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\database\EmployeeDatabase.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\dao\EmployeeDatabase.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\dao\PayslipDAO.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\AddEmployeeDialog.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\BaseGUI.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\EditEmployeeDialog.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\EmployeeDashboardGUI.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\HRDashboard.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\LeaveApplication.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\LoginGUI.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\PayslipGenerator.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\gui\PayslipReportGenerator.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\main\LoginSystem.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\main\OOPBasedPayrollSystem.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\main\TestPayslip.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\model\AdminUser.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\model\Credential.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\model\Employee.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\model\EmployeeUser.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\model\Payslip.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\model\PayslipData.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\model\User.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\service\PayrollService.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\service\UserService.java
+C:\Users\Cha\OneDrive\Documents\OOP-main\OOPBasedPayrollSystem\src\main\java\oopbasedpayrollsystem\util\DatabaseConnection.java

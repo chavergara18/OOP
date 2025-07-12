@@ -1,6 +1,6 @@
 package database;
 
-import com.mycompany.oopbasedpayrollsystem.Employee;
+import oopbasedpayrollsystem.model.Employee;
 
 import java.sql.*;
 import java.sql.Date;
